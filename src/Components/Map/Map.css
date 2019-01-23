@@ -1,0 +1,24 @@
+.map {
+  display: flex;
+  flex-wrap: wrap;
+  width: 700px;
+  margin: 0 auto;
+  z-index: 123;
+}
+.map-element {
+  flex: 1 0 calc(12% - 10px);
+  z-index: 0;
+  flex-basis: 1;
+  padding: 15px;
+  margin: 5px;
+  border: 1px solid black;
+  flex-grow: unset;
+}
+.map-element img:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.selected {
+  background: rgba(255, 255, 7, 0.822);
+}
