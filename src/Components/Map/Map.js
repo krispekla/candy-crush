@@ -10,7 +10,7 @@ const map = props => {
   const ispis = merge.map(el => {
     let elementImgSrc;
     let elementStyle = 'map-element';
-    switch (el.value) {
+    switch (el.sign) {
       case 1:
         elementImgSrc = s1;
         break;

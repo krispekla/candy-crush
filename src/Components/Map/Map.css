@@ -22,3 +22,48 @@
 .selected {
   background: rgba(255, 255, 7, 0.822);
 }
+
+.blurred-map {
+  position: fixed;
+  filter: blur(52px);
+  top: 50%;
+  left: 50%;
+  width: 700px;
+  height: 750px;
+  margin-top: -380px; /* Negative half of height. */
+  margin-left: -350px;
+  z-index: -3;
+
+  background: #e570e7; /* Old browsers */
+  background: -moz-linear-gradient(
+    top,
+    #e570e7 0%,
+    #e570e7 16%,
+    #c85ec7 24%,
+    #c85ec7 54%,
+    #c85ec7 75%,
+    #c85ec7 85%,
+    #a849a3 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    top,
+    #e570e7 0%,
+    #e570e7 16%,
+    #c85ec7 24%,
+    #c85ec7 54%,
+    #c85ec7 75%,
+    #c85ec7 85%,
+    #a849a3 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #e570e7 0%,
+    #e570e7 16%,
+    #c85ec7 24%,
+    #c85ec7 54%,
+    #c85ec7 75%,
+    #c85ec7 85%,
+    #a849a3 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e570e7', endColorstr='#a849a3',GradientType=0 );
+}
