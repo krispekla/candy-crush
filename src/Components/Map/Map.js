@@ -27,6 +27,7 @@ const map = props => {
     if (el.selected) {
       elementStyle += ' selected';
     }
+    console.log(el);
 
     return (
       <div

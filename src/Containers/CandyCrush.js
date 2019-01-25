@@ -8,6 +8,10 @@ class CandyCrush extends React.Component {
     nextMove: null
   };
 
+  generateElement = () => {
+    return Math.ceil(Math.random() * 4);
+  };
+
   generateMap = () => {
     let { candyMap } = this.state;
     let arr;
@@ -18,7 +22,7 @@ class CandyCrush extends React.Component {
         let element = {
           row: i,
           column: j,
-          sign: Math.ceil(Math.random() * 4),
+          sign: this.generateElement(),
           selected: false
         };
         arr.push(element);
@@ -26,6 +30,21 @@ class CandyCrush extends React.Component {
       candyMap[i] = arr;
     }
 
+    this.setState({ candyMap });
+  };
+
+  updateMap = fieldsToReplace => {
+    let { candyMap } = this.state;
+
+    console.log(fieldsToReplace);
+    for (let i = 0; i < fieldsToReplace.length; i++) {
+      candyMap[fieldsToReplace[i].row][fieldsToReplace[i].column] = {
+        row: fieldsToReplace[i].row,
+        column: fieldsToReplace[i].column,
+        sign: this.generateElement(),
+        selected: false
+      };
+    }
     this.setState({ candyMap });
   };
 
@@ -59,45 +78,29 @@ class CandyCrush extends React.Component {
     let sign = this.state.selected.sign;
     let candyMap = this.state.candyMap;
     // console.log(rowFrom, rowTo, columnFrom, columnTo);
-
+    let rIndex, cIndex;
+    let elementsToReplace = [];
     for (let i = rowFrom; i <= rowTo; i++) {
       for (let j = columnFrom; j <= columnTo; j++) {
-        // targetElement.row += i;
-        // targetElement.column += j;
-        // console.log(targetElement.row, targetElement.column);
-
-        console.log('for:', i, j);
-        console.log('Dva:', targetElement.row, targetElement.column);
-        console.log(
-          'zbrojena',
-          targetElement.row + i,
-          targetElement.column + j
-        );
-
         if (
           (i === 0 || j === 0) &&
           targetElement.row + i >= 0 &&
-          targetElement.column + j >= 0
+          targetElement.column + j >= 0 &&
+          targetElement.row + i < 5 &&
+          targetElement.column + j < 5
         ) {
-          // console.log(candyMap[targetElement.row][targetElement.column].sign);
-          // console.log(i, j);
-          console.log('usao');
-
-          // console.log(
-          //   `row: ${i} column: ${j} sign1: ${targetElement.row} ${
-          //     targetElement.column
-          //   } || sign2: ${sign}  candymap: ${
-          //     candyMap[targetElement.row][targetElement.column].sign
-          //   }`
-          // );
-          // console.log(candyMap[rr][cc]);
-
-          if (candyMap[targetElement.row][targetElement.column].sign === sign) {
-            console.log('nasao');
+          rIndex = targetElement.row + i;
+          cIndex = targetElement.column + j;
+          if (candyMap[rIndex][cIndex].sign === sign) {
+            // console.log('nasao', rIndex, cIndex);
+            elementsToReplace.push({ row: rIndex, column: cIndex });
           }
         }
-        console.log('-------');
+        // console.log('-------');
       }
+    }
+    if (elementsToReplace.length >= 3) {
+      this.updateMap(elementsToReplace);
     }
   };
   nextMoveHandler = (row, column, nextMove) => {
