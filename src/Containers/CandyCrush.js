@@ -144,7 +144,7 @@ class CandyCrush extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <h1>Oroundo Crush</h1>
+        <h1>Candy Crush</h1>
         <Map candyMap={this.state.candyMap} clickHandler={this.clickHandler} />
         <div className="blurred-map" />
       </React.Fragment>
